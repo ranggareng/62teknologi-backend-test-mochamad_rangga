@@ -14,10 +14,10 @@ class CreateBusinessCategoriesTable extends Migration
     public function up()
     {
         Schema::create('business_categories', function (Blueprint $table) {
-            $table->id();
-            $table->string("alias")->unique();
-            $table->string("title");
-            $table->timestamps();
+            $table->char("business_id", 36);
+            $table->unsignedInteger("category_id");
+            $table->foreign('business_id')->references('id')->on('businesses');
+            $table->foreign('category_id')->references('id')->on('master_categories');
         });
     }
 

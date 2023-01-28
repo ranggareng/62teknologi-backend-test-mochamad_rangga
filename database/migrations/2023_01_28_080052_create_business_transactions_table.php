@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBusinessToCategoriesTable extends Migration
+class CreateBusinessTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateBusinessToCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('business_to_categories', function (Blueprint $table) {
+        Schema::create('business_transactions', function (Blueprint $table) {
             $table->char("business_id", 36);
-            $table->unsignedInteger("category_id");
-
+            $table->unsignedInteger("transaction_id");
             $table->foreign('business_id')->references('id')->on('businesses');
-            $table->foreign('category_id')->references('id')->on('business_categories');
+            $table->foreign('transaction_id')->references('id')->on('master_transactions');
         });
     }
 
@@ -29,6 +28,6 @@ class CreateBusinessToCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('business_to_categories');
+        Schema::dropIfExists('business_transactions');
     }
 }

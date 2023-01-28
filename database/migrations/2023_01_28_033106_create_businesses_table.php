@@ -14,7 +14,7 @@ class CreateBusinessesTable extends Migration
     public function up()
     {
         Schema::create('businesses', function (Blueprint $table) {
-            $table->char(36)->primary();
+            $table->char("id", 36)->primary();
             $table->string('name', 191);
             $table->string('alias', 191)->unique();
             $table->boolean('is_claimed')->default(false);
