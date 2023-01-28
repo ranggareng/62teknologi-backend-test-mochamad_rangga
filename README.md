@@ -2,7 +2,7 @@
 Tech Stack : Laravel 8.*
 
 ## Description
-Aplikasi ini dibuat berdasarkan referensi dari API yang disediakan oleh *yelp*, segala macam dokumentasi terkait API yang dibuat pada sistem ini bisa melihat file 62 Teknologi.postman_collection.jso
+Aplikasi ini dibuat berdasarkan referensi dari API yang disediakan oleh *yelp*, segala macam dokumentasi terkait API yang dibuat pada sistem ini bisa melihat file 62 Teknologi.postman_collection.json
 
 ## Getting started
 ### Dependencies
@@ -30,6 +30,8 @@ Aplikasi ini dibuat berdasarkan referensi dari API yang disediakan oleh *yelp*, 
 - Install Composer Dependencies
 ```
 composer install
+```
+- Generate key application
 ```
 php artisan key:generate
 ```
