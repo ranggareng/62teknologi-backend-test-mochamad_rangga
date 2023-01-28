@@ -13,7 +13,7 @@ class MasterCategorySeed extends Seeder
      */
     public function run()
     {
-        \App\Models\MasterCategory::create(
+        \App\Models\MasterCategory::insert([
             [
                 'alias' => 'bakeries',
                 'title' => 'Bakeries'
@@ -34,6 +34,6 @@ class MasterCategorySeed extends Seeder
                 'alias' => 'soup',
                 'title' => 'Soup'
             ]
-        );
+        ]);
     }
 }

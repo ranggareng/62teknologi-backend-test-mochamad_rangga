@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        \App\Models\User::factory(1)->create(['email' => 'mochamad.rangga@gmail.com']);
         $this->call(MasterLocationSeed::class);
         $this->call(MasterCategorySeed::class);
         $this->call(MasterTransactionSeed::class);

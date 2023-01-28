@@ -13,7 +13,7 @@ class MasterTransactionSeed extends Seeder
      */
     public function run()
     {
-        \App\Models\MasterTransaction::create(
+        \App\Models\MasterTransaction::insert([
             [
                 'alias' => 'delivery',
                 'title' => 'Delivery'
@@ -30,6 +30,6 @@ class MasterTransactionSeed extends Seeder
                 'alias' => 'dine-in',
                 'title' => 'Dine In'
             ]
-        );
+        ]);
     }
 }
