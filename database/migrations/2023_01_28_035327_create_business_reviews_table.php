@@ -18,11 +18,11 @@ class CreateBusinessReviewsTable extends Migration
             $table->char("business_id", 36);
             $table->tinyInteger("rating");
             $table->text("content");
-            $table->unsignedInteger("user_id");
+            $table->unsignedBigInteger("user_id");
             $table->timestamps();
 
             $table->foreign('business_id')->references('id')->on('businesses');
-            $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

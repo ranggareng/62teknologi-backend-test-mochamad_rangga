@@ -14,8 +14,8 @@ class CreateBusinessTransactionsTable extends Migration
     public function up()
     {
         Schema::create('business_transactions', function (Blueprint $table) {
-            $table->char("business_id", 36);
-            $table->unsignedInteger("transaction_id");
+            $table->uuid("business_id");
+            $table->unsignedBigInteger("transaction_id");
             $table->foreign('business_id')->references('id')->on('businesses');
             $table->foreign('transaction_id')->references('id')->on('master_transactions');
         });
