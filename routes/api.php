@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/auth/token', [LoginController::class, 'login']);
 
 Route::group(['prefix' => 'business', 'middleware' => 'auth:sanctum'], function(){
+    Route::get('', [BusinessController::class, 'index']);
     Route::post('', [BusinessController::class, 'store']);
     Route::put('/{id}', [BusinessController::class, 'update']);
     Route::delete('/{id}', [BusinessController::class, 'destroy']);

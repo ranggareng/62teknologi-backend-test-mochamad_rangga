@@ -10,6 +10,7 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 // Requests
 use App\Http\Requests\API\Businesses\StoreRequest;
 use App\Http\Requests\API\Businesses\UpdateRequest;
+use App\Http\Requests\API\Businesses\SearchRequest;
 
 // Model
 use App\Models\Business;
@@ -18,6 +19,7 @@ use App\Models\BusinessPhoto;
 
 // Resources
 use App\Http\Resources\BusinessResource;
+use App\Http\Resources\BusinessCollection;
 
 class BusinessController extends Controller
 {
@@ -26,9 +28,42 @@ class BusinessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(SearchRequest $request)
     {
-        //
+        $businesses = Business::where(function($q) use ($request){
+            if($request->has('price')){
+                $q->where(function($q2) use($request){
+                    foreach($request->input('price') as $key => $value){
+                        if($key == 0)
+                            $q2->where('price', $value);
+                        else
+                            $q2->orWhere('price', $value);
+                    }
+                });
+            }
+
+            if($request->has('categories')){
+                $q->whereHas('categories', function($q2) use($request){
+                    foreach($request->input('categories') as $key => $value){
+                        if($key == 0)
+                            $q2->where('alias', $value);
+                        else
+                            $q2->orWhere('alias', $value);
+                    }
+                });
+            }
+        });
+
+        if($request->has('limit'))
+            $businesses->limit($request->input('limit'));
+
+        if($request->has('offset'))
+            $businesses->offset($request->input('offset'));
+
+        if($request->has('sort_by'))
+            $businesses->orderBy($request->input('sort_by'), $request->input('sort_type'));
+
+        return new BusinessCollection($businesses->get());
     }
 
     /**
