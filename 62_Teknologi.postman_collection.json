@@ -1,0 +1,564 @@
+{
+	"info": {
+		"_postman_id": "3c862e08-6199-4510-a247-6810e8fe1a77",
+		"name": "62_Teknologi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1269583"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "mochamad.rangga@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/auth/token",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update Business",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "content",
+						"value": "multipart/form-data",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Golden Boy Pizza",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "+14159829738",
+							"type": "text"
+						},
+						{
+							"key": "latitude",
+							"value": "37.76089938976322",
+							"type": "text"
+						},
+						{
+							"key": "longitude",
+							"value": "-122.43644714355469",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "transactions[0]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "transactions[1]",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "category[0]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "category[1]",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "operational[0][id]",
+							"value": "77",
+							"description": "id dari database",
+							"type": "text"
+						},
+						{
+							"key": "operational[0][day]",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "operational[0][start]",
+							"value": "0800",
+							"type": "text"
+						},
+						{
+							"key": "operational[0][end]",
+							"value": "2000",
+							"type": "text"
+						},
+						{
+							"key": "operational[0][is_overnight]",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "operational[1][id]",
+							"value": "78",
+							"description": "Id dari database",
+							"type": "text"
+						},
+						{
+							"key": "operational[1][day]",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "operational[1][start]",
+							"value": "0800",
+							"type": "text"
+						},
+						{
+							"key": "operational[1][end]",
+							"value": "2000",
+							"type": "text"
+						},
+						{
+							"key": "operational[1][is_overnight]",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "operational[2][id]",
+							"value": "0",
+							"description": "jika datanya baru, maka set ID sebagai 0",
+							"type": "text"
+						},
+						{
+							"key": "operational[2][day]",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "operational[2][start]",
+							"value": "0800",
+							"type": "text"
+						},
+						{
+							"key": "operational[2][end]",
+							"value": "2000",
+							"type": "text"
+						},
+						{
+							"key": "operational[2][is_overnight]",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "Graha Rancamanyar",
+							"type": "text"
+						},
+						{
+							"key": "address2",
+							"value": "Jalan Mawar 1",
+							"type": "text"
+						},
+						{
+							"key": "address3",
+							"value": "no 65",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "32-73",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "32",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "ID",
+							"type": "text"
+						},
+						{
+							"key": "zip_code",
+							"value": "40375",
+							"type": "text"
+						},
+						{
+							"key": "new_photos[0]",
+							"type": "file",
+							"src": "/C:/Users/mocha/Downloads/fff (2).png"
+						},
+						{
+							"key": "new_photos[1]",
+							"type": "file",
+							"src": "/C:/Users/mocha/Downloads/3-1024x949.jpeg"
+						},
+						{
+							"key": "photos[0]",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "photos[1]",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "_method",
+							"value": "put",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/business/fd2ba068-a5a7-441e-ab11-774f84e950a6",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"business",
+						"fd2ba068-a5a7-441e-ab11-774f84e950a6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Business",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "content",
+						"value": "multipart/form-data",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Golden Boy Pizza Halal",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "(022) 123 456",
+							"type": "text"
+						},
+						{
+							"key": "latitude",
+							"value": "37.76089938976322",
+							"type": "text"
+						},
+						{
+							"key": "longitude",
+							"value": "-122.43644714355469",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "transactions[0]",
+							"value": "1",
+							"description": "1-4",
+							"type": "text"
+						},
+						{
+							"key": "transactions[1]",
+							"value": "3",
+							"description": "1-4",
+							"type": "text"
+						},
+						{
+							"key": "category[0]",
+							"value": "3",
+							"description": "1-5",
+							"type": "text"
+						},
+						{
+							"key": "category[1]",
+							"value": "5",
+							"description": "1-5",
+							"type": "text"
+						},
+						{
+							"key": "operational[0][day]",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "operational[0][start]",
+							"value": "0800",
+							"type": "text"
+						},
+						{
+							"key": "operational[0][end]",
+							"value": "2000",
+							"type": "text"
+						},
+						{
+							"key": "operational[0][is_overnight]",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "operational[1][day]",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "operational[1][start]",
+							"value": "0800",
+							"type": "text"
+						},
+						{
+							"key": "operational[1][end]",
+							"value": "2000",
+							"type": "text"
+						},
+						{
+							"key": "operational[1][is_overnight]",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "Graha Rancamanyar",
+							"type": "text"
+						},
+						{
+							"key": "address2",
+							"value": "Jalan Mawar 1",
+							"type": "text"
+						},
+						{
+							"key": "address3",
+							"value": "no 65",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "32-73",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "32",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "ID",
+							"type": "text"
+						},
+						{
+							"key": "zip_code",
+							"value": "40375",
+							"type": "text"
+						},
+						{
+							"key": "photos[0]",
+							"type": "file",
+							"src": "/C:/Users/mocha/Downloads/image1.png"
+						},
+						{
+							"key": "photos[1]",
+							"type": "file",
+							"src": "/C:/Users/mocha/Downloads/image2.png"
+						},
+						{
+							"key": "photos[2]",
+							"type": "file",
+							"src": "/C:/Users/mocha/Downloads/image3.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/business/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"business",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Business",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/business/8a35c10c-ef0c-4564-9870-ff5ebc99efdc",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"business",
+						"8a35c10c-ef0c-4564-9870-ff5ebc99efdc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Business",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/business?categories[0]=pizza&categories[1]=halal&price[0]=2&sort_by=price&sort_type=desc&limit=2&offset=2",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"business"
+					],
+					"query": [
+						{
+							"key": "categories[0]",
+							"value": "pizza",
+							"description": "bakeries, pizza, halal, sandwiches, soup"
+						},
+						{
+							"key": "categories[1]",
+							"value": "halal"
+						},
+						{
+							"key": "price[0]",
+							"value": "2"
+						},
+						{
+							"key": "sort_by",
+							"value": "price",
+							"description": "name, price"
+						},
+						{
+							"key": "sort_type",
+							"value": "desc",
+							"description": "asc, desc"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "offset",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

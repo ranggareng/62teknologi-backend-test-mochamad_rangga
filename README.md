@@ -2,7 +2,16 @@
 Tech Stack : Laravel 8.*
 
 ## Description
-Aplikasi ini dibuat berdasarkan referensi dari API yang disediakan oleh *yelp*, segala macam dokumentasi terkait API yang dibuat pada sistem ini bisa melihat file 62 Teknologi.postman_collection.json
+Aplikasi ini merupakan aplikasi untuk mengelola data business, pengerjaan aplikasi ini menggunakan referensi dari ***yelp***. Aplikasi ini digunakan untuk keperluan technical test disalah satu perusahaan.
+
+Aplikasi ini memiliki 5 endpoint yang terdiri dari:
+- Endpoint POST /auth/token untuk mendapatkan token yang akan digunakan untuk memanggil semua api business
+- Endpoint POST /business untuk menambahkan data business
+- Endpoint POST /business/{id atau alias} untuk merubah data business ( ***Important Notice:*** pastikan mengirim params _method=PUT)
+- Endpoint DELETE /business/{id atau alias} untuk menghapus data business serta segala relasinya
+- Endpoint GET /business untuk melakukan pencarian data business
+
+Untuk bermain dengan API yang dibuat oleh aplikasi ini, silahkan menggunakan postman dan import collection **62_Teknologi.postman_collection.json**
 
 ## Getting started
 ### Dependencies
