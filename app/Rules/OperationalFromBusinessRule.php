@@ -4,7 +4,10 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class ContainRule implements Rule
+// Model
+use App\Models\BusinessOperational;
+
+class OperationalFromBusinessRule implements Rule
 {
     private $params;
 
@@ -27,9 +30,15 @@ class ContainRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        $comparationFieldValue = \Request::input($this->params);
+        if($value == 0)
+            return true;
 
-        if(count(explode($comparationFieldValue, $value)) > 1)
+        $operational = BusinessOperational::find($value);
+
+        if(!$operational)
+            return false;
+            
+        if($operational->business->id == $this->params || $operational->business->alias == $this->params)
             return true;
         else
             return false;
@@ -42,6 +51,6 @@ class ContainRule implements Rule
      */
     public function message()
     {
-        return ':attribute is not part of the '.$this->params;
+        return ':attribute is not part of the business';
     }
 }

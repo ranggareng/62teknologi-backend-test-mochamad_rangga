@@ -12,4 +12,9 @@ class BusinessOperational extends Model
     protected $fillable = [
         'day', 'start', 'end', 'is_overnight'
     ];
+
+    public function business()
+    {
+        return $this->belongsTo(Business::class, 'business_id');
+    }
 }

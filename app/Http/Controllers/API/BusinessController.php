@@ -9,9 +9,12 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 
 // Requests
 use App\Http\Requests\API\Businesses\StoreRequest;
+use App\Http\Requests\API\Businesses\UpdateRequest;
 
 // Model
 use App\Models\Business;
+use App\Models\BusinessOperational;
+use App\Models\BusinessPhoto;
 
 // Resources
 use App\Http\Resources\BusinessResource;
@@ -122,7 +125,7 @@ class BusinessController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         $business = Business::findData($id)->first();
         if(!$business)
@@ -150,14 +153,49 @@ class BusinessController extends Controller
 
             $business->transactions()->sync($request->input('transactions'));
             $business->categories()->sync($request->input('category'));
-            $business->operationals()->delete();
-            $business->operationals()->createMany($request->input('operational'));
+            
+            // Get All Business Operational id
+            $currentOperationals = $business->operationals;
+            $arrCurrentOperationalIds = $currentOperationals->pluck('id');
+            $arrRequestedOperationalIds = array_column($request->input('operational'), 'id');
 
-            //Upload Photo dan setup array untuk masuk ke database
-            // Proses upload photo
-            if ($request->hasFile('photos')) {
+            // Get array ID yang perlu dihapus dari database
+            $arrDeleteOperationalIds = array_diff($arrCurrentOperationalIds->all(), $arrRequestedOperationalIds);
+            if(!empty($arrDeleteOperationalIds)){
+                BusinessOperational::whereIn('id', $arrDeleteOperationalIds)->delete();
+            }
+
+            // Update Business Operational
+            foreach($request->input('operational') as $key => $item){
+                if($item['id'] == 0){       // Create
+                    $business->operationals()->create($item);
+                }else{                      // Update
+                    $operational = BusinessOperational::find($item['id']);
+                    $operational->update($item);
+                }
+            }
+
+            // Get All Business Operational id
+            $currentPhotos = $business->photos;
+            $arrCurrentPhotoIds = $currentPhotos->pluck('id');
+            $arrRequestedPhotoIds = $request->input('photos');
+
+            // Get array ID yang perlu dihapus dari database
+            $arrDeletePhotoIds = array_diff($arrCurrentPhotoIds->all(), $arrRequestedPhotoIds);
+            if(!empty($arrDeletePhotoIds)){
+                $deletePhotos = BusinessPhoto::whereIn('id', $arrDeletePhotoIds)->get();
+
+                foreach($deletePhotos as $key => $item){
+                    \Storage::delete($item->path);
+                    $item->delete();
+                }                
+            }
+
+            // //Upload Photo dan setup array untuk masuk ke database
+            // // Proses upload photo
+            if ($request->hasFile('new_photos')) {
                 $arrPhotos = [];
-                foreach ($request->file('photos') as $key => $photo) {
+                foreach ($request->file('new_photos') as $key => $photo) {
                     $arrPhotos[$key]['name'] = $photo->getClientOriginalName();
                     $arrPhotos[$key]['path'] = $photo->store('/businesses', 'public');
                 }

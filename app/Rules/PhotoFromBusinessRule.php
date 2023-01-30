@@ -4,7 +4,10 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class ContainRule implements Rule
+// Model
+use App\Models\BusinessPhoto;
+
+class PhotoFromBusinessRule implements Rule
 {
     private $params;
 
@@ -27,9 +30,9 @@ class ContainRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        $comparationFieldValue = \Request::input($this->params);
+        $photo = BusinessPhoto::find($value);
 
-        if(count(explode($comparationFieldValue, $value)) > 1)
+        if($photo->business->id == $this->params || $photo->business->alias == $this->params)
             return true;
         else
             return false;
@@ -42,6 +45,6 @@ class ContainRule implements Rule
      */
     public function message()
     {
-        return ':attribute is not part of the '.$this->params;
+        return ':attribute is not part of the business';
     }
 }
