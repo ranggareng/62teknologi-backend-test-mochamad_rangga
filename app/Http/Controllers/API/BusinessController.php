@@ -224,6 +224,12 @@ class BusinessController extends Controller
         if($business){
             try{
                 DB::beginTransaction();
+                
+                $photos = $business->photos;
+                foreach($photos as $key => $item){
+                    \Storage::delete($item->path);
+                }
+
                 $business->delete();
                 DB::commit();
                 return $this->responseSuccess(200, 'Business successfully deleted!');
