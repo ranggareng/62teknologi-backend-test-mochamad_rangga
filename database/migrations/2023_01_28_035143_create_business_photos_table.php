@@ -20,7 +20,7 @@ class CreateBusinessPhotosTable extends Migration
             $table->string("path");
             $table->timestamps();
 
-            $table->foreign('business_id')->references('id')->on('businesses');
+            $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');;
         });
     }
 

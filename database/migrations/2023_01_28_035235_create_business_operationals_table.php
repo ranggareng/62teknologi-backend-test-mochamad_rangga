@@ -22,7 +22,7 @@ class CreateBusinessOperationalsTable extends Migration
             $table->boolean("is_overnight")->default(false);
             $table->timestamps();
 
-            $table->foreign('business_id')->references('id')->on('businesses');
+            $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');;
         });
     }
 

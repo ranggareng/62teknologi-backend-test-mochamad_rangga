@@ -16,8 +16,8 @@ class CreateBusinessCategoriesTable extends Migration
         Schema::create('business_categories', function (Blueprint $table) {
             $table->char("business_id", 36);
             $table->unsignedBigInteger("category_id");
-            $table->foreign('business_id')->references('id')->on('businesses');
-            $table->foreign('category_id')->references('id')->on('master_categories');
+            $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');;
+            $table->foreign('category_id')->references('id')->on('master_categories')->onDelete('cascade');;
         });
     }
 

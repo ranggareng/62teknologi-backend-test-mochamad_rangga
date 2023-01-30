@@ -21,8 +21,8 @@ class CreateBusinessReviewsTable extends Migration
             $table->unsignedBigInteger("user_id");
             $table->timestamps();
 
-            $table->foreign('business_id')->references('id')->on('businesses');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');;
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
         });
     }
 

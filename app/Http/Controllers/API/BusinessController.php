@@ -220,6 +220,20 @@ class BusinessController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $business = Business::findData($id)->first();
+        if($business){
+            try{
+                DB::beginTransaction();
+                $business->delete();
+                DB::commit();
+                return $this->responseSuccess(200, 'Business successfully deleted!');
+            }catch(\Exception $e){
+                DB::rollBack();
+                report($e);
+                return $this->responseFailed(500, $e->getMessage());
+            }
+        }else{
+            return $this->responseFailed(404, 'Data Not Found!');
+        }            
     }
 }
